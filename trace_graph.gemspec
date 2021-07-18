@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.summary       = %q{Traces the ruby calls and generates a graph}
   spec.description   = %q{The ruby calls are traced and represented as a graph to visualize the calls}
-  spec.homepage      = "https://github.com/ramemanatingideas/Call-Graph"
+  spec.homepage      = "https://github.com/ramemanatingideas/trace_graph"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["homepage_uri"] = spec.homepage

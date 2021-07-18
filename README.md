@@ -22,7 +22,7 @@ Add this line to your application's Gemfile:
 
 To Use Specific branch, say path-maker:
 ```ruby
-gem 'trace_graph', git: "https://github.com/ramemanatingideas/Call-Graph.git", branch: 'path-maker'
+gem 'trace_graph', git: "https://github.com/ramemanatingideas/trace_graph", branch: 'path-maker'
 ```
 
 ```ruby
