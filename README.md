@@ -99,11 +99,11 @@ Preferences currently in place:
 * Trace Output File: To specify the output file name
  `trace_output_file = 'file_name'`
 * Trace Time Unit: To specify the time unit for the profiling in the nodes [ms, s, min]
-* Trace Depth: To specify the depth of the trace on how many levels of calls should be considered (TODO)
+* Trace Depth: To specify the depth of the trace on how many levels of calls should be considered 
  `trace_depth = 2`
 * Trace File Type: Specify the file type of the generated graph (currently can generated PDF and SVG)
  `trace_type = 'svg'`
-* Trace Neighbours: To get the nearest nodes that are calling the given node and optionally highlight the nodes (TODO)
+* Trace Neighbours: To get the nearest nodes that are calling the given node and optionally highlight the nodes 
  `trace_neighbours = {method: 'method1', color: 'blue'}`, this can be extended for multiple nodes also
 
 **Usage Example**
@@ -219,7 +219,7 @@ end
 ```
 
 Result of Trace Caller:
-![Result of Trace Path](./out/trace_callees_ss.png)
+![Result of Trace Caller](./out/trace_callees_ss.png)
 
 **For Outgoing:**
 
@@ -231,7 +231,36 @@ end
 ```
 
 Result of Trace Callee:
-![Result of Trace Path](./out/trace_callers_ss.png)
+![Result of Trace Callee](./out/trace_callers_ss.png)
+
+### Trace Depth:
+You can set any depth for the tracer and it will trace upto that.
+This is very helpful when you have a huge graph and want to analyze specifically.
+Also using the other features like trace_path will be faster due to reduced graph size.
+Improves the performance overall.
+
+All of the features can be combined with this depth.
+```ruby
+prefs = TraceGraph::Preferences.new do |p|
+  p.trace_depth = 1 
+end
+```
+
+Result of Trace Depth:
+Depth : 1
+
+![Result of Trace Depth](./out/trace_depth_sample.png)
+
+Depth tracing takes 0 index. eg: depth of 3 will be 0,1,2.
+
+More examples of depth:
+
+No depth given:
+![Trace_no_depth_example](./out/simple_example_no_depth.png)
+
+Depth of 1:
+
+![Trace_one_depth_example](./out/simple_example_two_depth.png)
 
 
 >Note : Filtering of method calls for internal methods is yet to be done so if you directly use this in rails you might see a huge graph
