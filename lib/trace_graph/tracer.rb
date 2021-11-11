@@ -29,7 +29,7 @@ module TraceGraph
     end
 
     # return the result of the recordings or tracings
-    # @return [String](CallStack result method return)
+    # @return [String] (CallStack result method return)
     def result
       @reporter.result
     end

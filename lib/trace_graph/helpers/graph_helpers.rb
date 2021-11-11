@@ -25,7 +25,7 @@ module TraceGraph
 
       # get pattern strings to match and replace
       split_string_patterns = []
-      split_string_replacements.each { |i| splt_string_patterns << i.split(',').first + ']' }
+      split_string_replacements.each { |i| split_string_patterns << i.split(',').first + ']' }
 
       # replace the string at its occurrence by taking the pattern
       split_string_replacements.each_with_index do |replacement, i|

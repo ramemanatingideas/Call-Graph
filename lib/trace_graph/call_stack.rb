@@ -25,7 +25,7 @@ module TraceGraph
       # This below line does what the above line does , it does the same with a generic method
       @colour_nodes = check_method_and_set(init_params[:prefs],'method_nodes', false, true)
 
-      @trace_path = chec_method_and_set(init_params[:prefs], 'trace_path', false, true)
+      @trace_path = check_method_and_set(init_params[:prefs], 'trace_path', false, true)
 
       @trace_outgoing = check_method_and_set(init_params[:prefs], 'trace_callees', false, true)
 
