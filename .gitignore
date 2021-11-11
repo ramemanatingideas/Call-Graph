@@ -10,4 +10,3 @@
 # rspec failure tracking
 .rspec_status
 /trial/
-trace_graph-0.1.0.gem

@@ -1,13 +1,11 @@
 module TraceGraph
   module GraphHelpers
-    def convert_call_hash_to_adj_list(call_hash)
-      formatted_hash = {}
-      call_hash.each do |key, value|
-        formatted_hash[key] = value.keys
-      end
-      formatted_hash
-    end
-
+    # Makes dot string to create edge
+    # @param [String] src
+    # @param [String] dest
+    # @param [String] label_count
+    # @param [String] label_count
+    # @return [String]
     def make_dot_edge(src, dest, label_count, label_color)
       # Eg: "\"main\" -> \"recursive_adder\" [label=\" 1\"]";
       "\"#{src}\" -> \"#{dest}\" [label=\"#{label_count}\", color=\"#{label_color}\"]\n"
@@ -18,13 +16,16 @@ module TraceGraph
       dot_string.split("\n")
     end
 
+    # String replace Main dot string with the new strings.
+    # This method only modifies the lines in the string and
+    # not replace the whole string
     def modify_dot(main_dot_string, replacement_strings)
       # get replacement strings
       split_string_replacements = replacement_strings.split("\n")
 
       # get pattern strings to match and replace
       split_string_patterns = []
-      split_string_replacements.each { |i| split_string_patterns << i.split(',').first + ']' }
+      split_string_replacements.each { |i| splt_string_patterns << i.split(',').first + ']' }
 
       # replace the string at its occurrence by taking the pattern
       split_string_replacements.each_with_index do |replacement, i|
@@ -38,6 +39,10 @@ module TraceGraph
       # return the modified dot
       main_dot_string
     end
+
+    # Below methods replace_dot_string and sub_dot_string 
+    # are not being used and exists for future uses.Can be
+    # ignored for now
 
     # this method directly replaces the pattern with the new string
     # This can raise IndexError
@@ -57,6 +62,11 @@ module TraceGraph
     def convert_paths_to_dot(src, paths, color)
       dot_string = ''
       paths.each do |path|
+        # Refer to the structure of paths object.
+        # First element will be a single string item
+        # Rest of the items will be array of array
+        # This enum was used to iterate and get the next item without causing null reference error.
+        # It is due to the structure.
         path.each_cons(2) do |node, next_node|
           dot_string += if src == node
                           # dot_string += src + " -> " + next_node[:method] + "\n"
@@ -86,8 +96,8 @@ module TraceGraph
     end
 
     # @param [String] node_name
-    # @param [String] color
-    # @return [String] dot_string
+    # @param [Hash] call_hash
+    # @return [String] color
     # This method returns dot string by connecting the parent (callers) to the specified nodes
     # The method gets all the callers for the node (ie the nodes which calls this node) and connects to the node
     def convert_callers_to_dot(node_name, call_hash, color)
@@ -103,3 +113,4 @@ module TraceGraph
 
   end
 end
+
